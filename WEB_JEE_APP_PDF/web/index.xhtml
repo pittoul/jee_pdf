@@ -5,18 +5,46 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        <style type="text/css">
+            #title {border-width: thin; text-align: center;}
+            #all { display: flex}
+            #text-options { width: 20%; text-align: center;}
+            #options { width: 80%; display: flex; flex-direction: row}
+            #option { width: 200px; background-color: white; margin-right: 5px; border-radius: 10px; text-align: center; border: 2px solid grey}
+            #option:hover { border: 2px solid white; border-radius: 10px; color: white; background-color: grey; cursor: pointer}
+        </style>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h1 id="title"> Couteau Suisse PDF </h1>
         <p:growl id="messages" showDetail="true" />
 
-
-        <h:form enctype="multipart/form-data" >        
+        <div id="all">
+            <div id="text-options">
+                <h2>Choissisez une option</h2>
+            </div>
+            <div id="options">
+                <div id="option">
+                    <p>Fusion de pdf</p>
+                </div>
+                <div id="option">
+                    <p>Suppression de pages</p>
+                </div>
+                <div id="option">
+                    <p>Extraction de pages</p>
+                </div>
+                <div id="option">
+                    <p>Trier un pdf</p>
+                </div>
+                <div id="option">
+                    <p>Signer de pdf</p>
+                </div>
+            </div>
+        </div>
+        <h:form enctype="multipart/form-data" >  
             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
         </h:form>
 
-        J'aime le ketchup
     </h:body>
 </html>
 
