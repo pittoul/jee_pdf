@@ -8,6 +8,6 @@
  *
  * @author nimen
  */
-public class FileDownloadView {
+public class FileDownloadView{
     
 }
