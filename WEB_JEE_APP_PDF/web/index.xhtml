@@ -5,17 +5,71 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        <style type="text/css">
+            #title {border-width: thin; text-align: center;}
+            #all { display: flex}
+            #text-options { width: 20%; text-align: center;}
+            #options { width: 80%; display: flex; flex-direction: row}
+            #option { width: 200px; background-color: white; margin-right: 5px; border-radius: 10px; text-align: center; border: 2px solid grey}
+            #option:hover { border: 2px solid white; border-radius: 10px; color: white; background-color: grey; cursor: pointer}
+        </style>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h1 id="title"> Couteau Suisse PDF </h1>
         <p:growl id="messages" showDetail="true" />
-        <h:form enctype="multipart/form-data" >        
+        <div id="all">
+            <div id="text-options">
+                <h2>Choissisez une option</h2>
+            </div>
+            <div id="options">
+                <div id="option">
+                    <p>Fusion de pdf</p>
+                </div>
+                <div id="option">
+                    <p>Suppression de pages</p>
+                    <h:form >
+            <p:commandButton  value="Supprimer La seconde Page" action="#{supprPageFromPdf.supprPages}" />
+        </h:form>
+                </div>
+                <div id="option">
+                    <p>Extraction de pages</p>
+                </div>
+                <div id="option">
+                    <p>Trier un pdf</p>
+                </div>
+                <div id="option">
+                    <p>Signer de pdf</p>
+                </div>
+            </div>
+        </div>
+        <h:form enctype="multipart/form-data" >  
             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
         </h:form>
-        <h:form >
-            <p:commandButton  value="Supprimer La seconde Page" action="#{supprPageFromPdf.supprPages}" />
+        <script type="text/javascript">
+            //<![CDATA[
+            function start() {
+                PF('statusDialog').show();
+            }
+
+            function stop() {
+                PF('statusDialog').hide();
+            }
+            //]]>
+        </script>    
+
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+            <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
+        </p:dialog>
+        <h:form>   
+            <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+                <p:fileDownload value="#{fileDownloadView.downloadValue}" />
+            </p:commandButton>      
         </h:form>
+
+>>>>>>> 9ab1b231e31b277c92930ffc808ef5133a24450a
+>>>>>>> b394f68aaad85dde0a5ec25227763c8d1daa4e43
     </h:body>
 </html>
 
