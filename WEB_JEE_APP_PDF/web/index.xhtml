@@ -9,14 +9,13 @@
     <h:body>
         Hello from Facelets
         <p:growl id="messages" showDetail="true" />
-
-
         <h:form enctype="multipart/form-data" >        
             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
         </h:form>
-
-        J'aime le ketchup
+        <h:form >
+            <p:commandButton  value="Supprimer La seconde Page" action="#{supprPageFromPdf.supprPages}" />
+        </h:form>
     </h:body>
 </html>
 

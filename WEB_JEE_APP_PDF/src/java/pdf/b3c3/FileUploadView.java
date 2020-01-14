@@ -1,3 +1,5 @@
+package pdf.b3c3;
+
 
 
 import java.io.File;
@@ -63,7 +65,7 @@ public class FileUploadView implements IChemin {
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());
             InputStream input = file.getInputstream();
-            OutputStream output = new FileOutputStream(new File(destination, filename));
+            OutputStream output = new FileOutputStream(new File(destination, "original.pdf"));
             System.out.println("chemin : " + cheminDoc);
             // Copy the contents of the file to the output stream
             try {
