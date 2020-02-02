@@ -50,9 +50,13 @@
             <h:form enctype="multipart/form-data" >  
                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
                 <h:outputText value=" -----> " />        
-
                 <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-                <h:outputText value="Nom du fichier: #{fileUploadView.nomFichier}"/>      
+                <p:inputText id="inputNomFichier" value="#{fileUploadView.nomFichier}">   
+                    <p:ajax update="outputNomFichier" /> 
+                </p:inputText>
+                <p:inputText id="outputNomFichier" disabled="true" value="#{fileUploadView.nomFichier}"/>
+                <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
+                <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
             </h:form>
             <h:form>
                 <p:commandButton  value="Fusionner 2 Pdf's" action="#{supprPageFromPdf.supprPages}" />
@@ -80,7 +84,7 @@
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Image en pdf" action="#{supprPageFromPdf.supprPages}" />
+                <p:commandButton  value="Image en pdf" action="#{imageToPDF.imageToPDF}" />
                 <p:row>  
                 </p:row>
             </h:form>

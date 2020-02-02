@@ -1,7 +1,8 @@
 package pdf.b3c3;
 
-
-
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,8 +31,35 @@ public class FileUploadView implements IChemin {
 
     private UploadedFile file;
     private String nomFichier;
+    private String extensionFichier;
+    private String nomCourt;
+//    private int nbrePages = 0;
 //    private String cheminImg = "";
 //    private String afficheImg = "";
+
+    public String getExtensionFichier() {
+        return extensionFichier;
+    }
+
+    public void setExtensionFichier(String extensionFichier) {
+        this.extensionFichier = extensionFichier;
+    }
+
+//    public int getNbrePages() {
+//        return nbrePages;
+//    }
+//
+//    public void setNbrePages(int nbrePages) {
+//        this.nbrePages = nbrePages;
+//    }
+
+    public String getNomCourt() {
+        return nomCourt;
+    }
+
+    public void setNomCourt(String nomCourt) {
+        this.nomCourt = nomCourt;
+    }
 
     public String getNomFichier() {
         return nomFichier;
@@ -41,12 +69,9 @@ public class FileUploadView implements IChemin {
         this.nomFichier = nomFichier;
     }
 
-    
-
 //    public String getAfficheImg() {
 //        return afficheImg;
 //    }
-
     public UploadedFile getFile() {
         return file;
     }
@@ -54,11 +79,9 @@ public class FileUploadView implements IChemin {
 //    public String getCheminImg() {
 //        return cheminImg;
 //    }
-
 //    public void setTexteTest(String texteTest) {
 //        this.cheminImg = texteTest;
 //    }
-
     public void setFile(UploadedFile file) {
         System.out.println("- - - - - SET FILE - - - - - ");
         this.file = file;
@@ -71,13 +94,25 @@ public class FileUploadView implements IChemin {
     public void upload() throws IOException {
         if (file != null) {
             String cheminDoc = destination + "\\" + file.getFileName();
-            
             FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());
-            this.setNomFichier(filename);
+            String filenameShort = FilenameUtils.removeExtension(file.getFileName());
+            String extension = FilenameUtils.getExtension(file.getFileName());
+//            Si c'est un pdf, on obtient le nombre de pages
+//            try {
+//                PdfDocument pdfDoc = new PdfDocument(new PdfReader(cheminDoc), new PdfWriter(destination + "\\" + "testXXXX"));
+//                int n = pdfDoc.getNumberOfPages();
+//                this.nbrePages = n;
+//            } catch (Exception e) {
+//                System.out.println("erreur ! " + e);
+//            }
+            this.nomFichier = filename;
+            this.nomCourt = filenameShort;
+            this.extensionFichier = extension;
             InputStream input = file.getInputstream();
-            OutputStream output = new FileOutputStream(new File(destination, "original.pdf"));
+//            OutputStream output = new FileOutputStream(new File(destination, (filenameShort + "_original.pdf")));
+            OutputStream output = new FileOutputStream(new File(destination, ("original.pdf")));
             System.out.println("chemin : " + cheminDoc);
             // Copy the contents of the file to the output stream
             try {

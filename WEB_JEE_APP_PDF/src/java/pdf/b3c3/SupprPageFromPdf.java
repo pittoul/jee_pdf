@@ -15,17 +15,21 @@ import javax.inject.Named;
 
 /**
  *
- * @author nimen
+ * @author Bruno
  */
 @Named
 @RequestScoped  
 public class SupprPageFromPdf implements IChemin {
+    private String nomFichierOriginal;
     private final String SRC = destination + "\\" + "original.pdf";
     private final String DEST = destination + "\\" + "changed.pdf";
 
     public void supprPages() throws IOException {
         PdfReader reader = new PdfReader(SRC);
         PdfWriter writer = new PdfWriter(DEST);
+        PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
+        int n = pdfDoc.getNumberOfPages();
+        System.out.println("nbre de pages : " + n);
         try (PdfDocument document = new PdfDocument(reader, writer)) {
             document.removePage(1);
         }

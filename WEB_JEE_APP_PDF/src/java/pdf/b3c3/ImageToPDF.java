@@ -26,7 +26,7 @@ public class ImageToPDF implements IChemin {
 
     public void ImageToPDF() throws IOException, DocumentException {
         FileUploadView fileUpload = new FileUploadView();
-        System.out.println(fileUpload.getNomFichier());
+        System.out.println(fileUpload.toString());
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(destination + "/newPDF.pdf"));
         document.open();
