@@ -18,7 +18,7 @@ import javax.inject.Named;
  * @author nimen
  */
 @Named
-@RequestScoped
+@RequestScoped  
 public class SupprPageFromPdf implements IChemin {
     private final String SRC = destination + "\\" + "original.pdf";
     private final String DEST = destination + "\\" + "changed.pdf";
