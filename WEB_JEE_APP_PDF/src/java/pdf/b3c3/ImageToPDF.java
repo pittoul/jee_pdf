@@ -1,14 +1,17 @@
-    package pdf.b3c3;
+package pdf.b3c3;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.enterprise.context.RequestScoped;
+import javax.imageio.ImageIO;
 import javax.inject.Named;
 
 /*
@@ -25,14 +28,18 @@ import javax.inject.Named;
 public class ImageToPDF implements IChemin {
 
     public void ImageToPDF() throws IOException, DocumentException {
-        FileUploadView fileUpload = new FileUploadView();
-        System.out.println(fileUpload.toString());
-        Document document = new Document();
+
+        String url = destination + "\\upload.jpg";
+        Image img = Image.getInstance(url);
+        BufferedImage bimg = ImageIO.read(new File(url));
+        int width = bimg.getWidth();
+        int height = bimg.getHeight();
+        Rectangle pageSize = new Rectangle(width, height);
+        Document document = new Document(pageSize);
         PdfWriter.getInstance(document, new FileOutputStream(destination + "/newPDF.pdf"));
         document.open();
-        Image img = Image.getInstance(fileUpload.getNomFichier());
-        img.scaleAbsoluteHeight(PageSize.A4.getHeight());
-        img.scaleAbsoluteWidth(PageSize.A4.getWidth());
+        img.scaleAbsoluteHeight(height);
+        img.scaleAbsoluteWidth(width);
         document.add(img);
         document.close();
     }
