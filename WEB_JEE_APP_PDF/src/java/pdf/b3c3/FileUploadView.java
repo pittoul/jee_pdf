@@ -29,8 +29,19 @@ import org.primefaces.shaded.commons.io.IOUtils;
 public class FileUploadView implements IChemin {
 
     private UploadedFile file;
+    private String nomFichier;
 //    private String cheminImg = "";
 //    private String afficheImg = "";
+
+    public String getNomFichier() {
+        return nomFichier;
+    }
+
+    public void setNomFichier(String nomFichier) {
+        this.nomFichier = nomFichier;
+    }
+
+    
 
 //    public String getAfficheImg() {
 //        return afficheImg;
@@ -64,6 +75,7 @@ public class FileUploadView implements IChemin {
             FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());
+            this.setNomFichier(filename);
             InputStream input = file.getInputstream();
             OutputStream output = new FileOutputStream(new File(destination, "original.pdf"));
             System.out.println("chemin : " + cheminDoc);
