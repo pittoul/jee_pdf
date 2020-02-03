@@ -21,6 +21,10 @@
                 border: grey solid 1px;
                 border-radius: 3px;
             }
+            .ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary {
+                background: bisque;
+                font-weight: bold;
+            }
         </style>
     </h:head>
     <h:body>
@@ -47,47 +51,89 @@
             <f:facet name="header">
                 <h:outputText value="Couteau Suisse PDF" />        
             </f:facet>
+
+
+
+
+
+
             <h:form enctype="multipart/form-data" >  
                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
                 <h:outputText value=" -----> " />        
                 <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-                <p:inputText id="inputNomFichier" value="#{fileUploadView.nomFichier}">   
-                    <p:ajax update="outputNomFichier" /> 
-                </p:inputText>
-                <p:inputText id="outputNomFichier" disabled="true" value="#{fileUploadView.nomFichier}"/>
                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                 <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
             </h:form>
+
+
+
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <hr />
+
+            <h:outputText value=" SUPPRIMER DES PAGES D'UN PDF : " />        
+            <form action="ServletRecupNomFichier" method="post">
+                <input name="nomFichierOriginal" type="text" value="#{fileUploadView.nomFichier}"></input>
+                <input name="nomCourtFichierOriginal" type="text" value="#{fileUploadView.nomCourt}"></input>
+                <input name="extensionFichierOriginal" type="text" value="#{fileUploadView.extensionFichier}"></input>
+                <p>Page de départ : <input id="pageDepartSuppr" name="pageDepart" value="#{inputNumberView.pageDepartSuppression}" placeholder="Page de départ" /></p>
+                <p>Nombre de pages à supprimer<input id="nbrePagesSuppr" name="nbrePages" value="#{inputNumberView.nbrePagesSuppression}" placeholder="Nombre de pages à supprimer"/></p>  
+                <button type="submit" id="val" class="ui-priority-primary">SUPPRIMER DES PAGES</button>
+            </form>
+            <hr />
+
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+
+
+
+         
+
+            <br />
             <h:form>
-                <p:commandButton  value="Fusionner 2 Pdf's" action="#{supprPageFromPdf.supprPages}" />
                 <p:row>  
+                    <p:commandButton  class="ui-priority-primary" value="Fusionner 2 Pdf's" action="#{supprPageFromPdf.supprPages}" />
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Supprimer une/des Page(s)" action="#{supprPageFromPdf.supprPages}" />
                 <p:row>  
+                    <p:commandButton  class="ui-priority-primary" value="Supprimer une/des Page(s)" action="#{supprPageFromPdf.supprPages}" />
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Extraire une/des Page(s)" action="#{supprPageFromPdf.supprPages}" />
                 <p:row>  
+                    <p:commandButton  class="ui-priority-primary" value="Extraire une/des Page(s)" action="#{supprPageFromPdf.supprPages}" />
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Trier pdf" action="#{supprPageFromPdf.supprPages}" />
                 <p:row>  
+                    <p:commandButton  value="Trier pdf" action="#{supprPageFromPdf.supprPages}" />
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Signer un pdf" action="#{supprPageFromPdf.supprPages}" />
                 <p:row>  
+                    <p:commandButton  value="Signer un pdf" action="#{supprPageFromPdf.supprPages}" />
                 </p:row>
             </h:form>
             <h:form>
-                <p:commandButton  value="Image en pdf" action="#{imageToPDF.imageToPDF}" />
                 <p:row>  
+                    <p:commandButton  value="Image en pdf" action="#{imageToPDF.ImageToPDF}" />
                 </p:row>
             </h:form>
+
+
+
+
+
+
             <h:form>
                 <p:column styleClass="p-col">  
                     <p>Page de départ :</p>  
@@ -102,6 +148,12 @@
                     </p:inputNumber>  
                 </p:column> 
             </h:form>
+
+
+
+
+
+
             <f:facet name="footer">
                 <h:form>   
                     <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
@@ -109,6 +161,13 @@
                     </p:commandButton>      
                 </h:form>
             </f:facet>
+
+
+
+
+
+
+
         </p:panel>
     </h:body>
 </html>

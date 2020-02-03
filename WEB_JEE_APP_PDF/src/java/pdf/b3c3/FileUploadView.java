@@ -112,7 +112,7 @@ public class FileUploadView implements IChemin {
             this.extensionFichier = extension;
             InputStream input = file.getInputstream();
 //            OutputStream output = new FileOutputStream(new File(destination, (filenameShort + "_original.pdf")));
-            OutputStream output = new FileOutputStream(new File(destination, ("original.pdf")));
+            OutputStream output = new FileOutputStream(new File(destination, ("upload." + extension)));
             System.out.println("chemin : " + cheminDoc);
             // Copy the contents of the file to the output stream
             try {

@@ -6,14 +6,18 @@
 package pdf.b3c3;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
+import static com.itextpdf.kernel.pdf.PdfName.List;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.jasper.tagplugins.jstl.ForEach;
 
 /**
  *
@@ -35,8 +39,28 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String nom = request.getParameter("nomFichierOriginal");
-            System.out.println("dans le Servlet RecupNom " + nom);
+            String nomCourt = request.getParameter("nomCourtFichierOriginal");
+            String extension = request.getParameter("extensionFichierOriginal");
+            String pageDepart = request.getParameter("pageDepart");
+            String nbrePages = request.getParameter("nbrePages");
+            Enumeration<String> lesParametres = request.getParameterNames();
+            System.out.println("Les paramètres de la requete sont : ");
+            while (lesParametres.hasMoreElements()) {
+                String s = lesParametres.nextElement();
+                System.out.println(s);
+            }
+            
+            SupprPageFromPdf spr = new SupprPageFromPdf();
+            spr.supprPages(Integer.parseInt(pageDepart), Integer.parseInt(nbrePages));
+            
+            
+            
+            
+            System.out.println("\ndans le Servlet RecupNom : " + nom + ",\nNom Court : " + nomCourt + ", \nExtension : " + extension);
+            System.out.println("\nnbre pages : " + nbrePages + ", \npageDepart : " + pageDepart);
+            response.sendRedirect(request.getHeader("referer"));
 //            PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
+//            PdfDocument ppp = new PdfDocument(IChemin.destination + "\\" + nom);
 //            int n = pdfDoc.getNumberOfPages();
 //            System.out.println("nbre de pages : " + n);
             /* TODO output your page here. You may use following sample code. */

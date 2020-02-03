@@ -12,26 +12,34 @@ import javax.inject.Named;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Bruno
  */
 @Named
-@RequestScoped  
+@RequestScoped
 public class SupprPageFromPdf implements IChemin {
+
     private String nomFichierOriginal;
-    private final String SRC = destination + "\\" + "original.pdf";
+    private final String SRC = destination + "\\" + "upload.pdf";
     private final String DEST = destination + "\\" + "changed.pdf";
 
-    public void supprPages() throws IOException {
+    public void supprPages(int pageDeDepart, int nbreDePages) throws IOException {
         PdfReader reader = new PdfReader(SRC);
         PdfWriter writer = new PdfWriter(DEST);
         PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
         int n = pdfDoc.getNumberOfPages();
         System.out.println("nbre de pages : " + n);
+        boolean validation1 = (pageDeDepart <= n);
+        boolean validation2 = (nbreDePages <= (n - pageDeDepart));
         try (PdfDocument document = new PdfDocument(reader, writer)) {
-            document.removePage(1);
+            if (validation1 && validation2) {
+                for (int i = 0; i < nbreDePages; i++) {
+                    document.removePage(pageDeDepart);
+                }
+            }
         }
+        reader.close();
+        writer.close();
     }
 }
