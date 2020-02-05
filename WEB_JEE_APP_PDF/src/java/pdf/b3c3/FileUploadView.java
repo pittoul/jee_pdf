@@ -34,11 +34,19 @@ public class FileUploadView implements IChemin {
     private String extensionFichier;
     private String nomCourt;
 //    private int nbrePages = 0;
-//    private String cheminImg = "";
+    private String cheminFichier = "";
 //    private String afficheImg = "";
 
     public String getExtensionFichier() {
         return extensionFichier;
+    }
+
+    public String getCheminFichier() {
+        return cheminFichier;
+    }
+
+    public void setCheminFichier(String cheminFichier) {
+        this.cheminFichier = cheminFichier;
     }
 
     public void setExtensionFichier(String extensionFichier) {
@@ -94,6 +102,7 @@ public class FileUploadView implements IChemin {
     public void upload() throws IOException {
         if (file != null) {
             String cheminDoc = destination + "\\" + file.getFileName();
+            this.cheminFichier = destination + "\\upload.pdf";
             FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());

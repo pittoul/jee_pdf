@@ -62,26 +62,52 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
                     ImageToPDF itp = new ImageToPDF();
                     itp.ImageToPDF();
                     break;
+                case "fusionnerPdf":
+//                    ImageToPDF itp = new ImageToPDF();
+//                    itp.ImageToPDF();
+                    break;
+                case "extrairePages":
+//                    ImageToPDF itp = new ImageToPDF();
+//                    itp.ImageToPDF();
+                    break;
+                case "signerPDF":
+//                    ImageToPDF itp = new ImageToPDF();
+//                    itp.ImageToPDF();
+                    break;
                 default:
                 // code block
             }
 
             System.out.println("\ndans le Servlet RecupNom : " + nom + ",\nNom Court : " + nomCourt + ", \nExtension : " + extension);
             System.out.println("\nnbre pages : " + nbrePages + ", \npageDepart : " + pageDepart);
+            System.out.println("\nAdresse du fichier : " + destination + "\\" + nom);
+            /**
+             * Redirection:
+             */
             response.sendRedirect(request.getHeader("referer"));
+
 //            PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
 //            PdfDocument ppp = new PdfDocument(IChemin.destination + "\\" + nom);
 //            int n = pdfDoc.getNumberOfPages();
 //            System.out.println("nbre de pages : " + n);
             /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
+//            out.println("<!DOCTYPE html>"
+//                    + "<html xmlns=\"http://www.w3.org/1999/xhtml\"\n" +
+//"      xmlns:h=\"http://xmlns.jcp.org/jsf/html\"\n" +
+//"      xmlns:p=\"http://primefaces.org/ui\"\n" +
+//"      xmlns:f=\"http://xmlns.jcp.org/jsf/core\">");
 //            out.println("<html>");
-//            out.println("<head>");
+//            out.println("<h:head>");
 //            out.println("<title>Servlet ServletRecupNomFichier</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
+//            out.println("</h:head>");
+//            out.println("<h:body>");
+//            out.println("<p:media value='" + destination + "\\" + "upload.pdf" + "' width='100%' height='300px'>");
+////                    Your browser can't display pdf, <h:outputLink value="/resources/demo/media/guide.pdf">click</h:outputLink> to download pdf instead.
+//            out.println("</p:media>");
+//            out.println("<h:outputLink value=\"" + destination + "\\" + "upload.pdf" + "\">click</h:outputLink> to download pdf instead.");
+//            
 //            out.println("<h1>Servlet ServletRecupNomFichier at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
+//            out.println("</h:body>");
 //            out.println("</html>");
         }
     }
