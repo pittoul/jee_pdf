@@ -72,11 +72,10 @@
             <br />
             <br />
             <br />
-
             <hr />
-
             <h:outputText value=" SUPPRIMER DES PAGES D'UN PDF : " />        
             <form action="ServletRecupNomFichier" method="post">
+                <input type="text" hidden="" value="supprimerPages" name="choixOperation"/>
                 <input name="nomFichierOriginal" type="text" value="#{fileUploadView.nomFichier}"></input>
                 <input name="nomCourtFichierOriginal" type="text" value="#{fileUploadView.nomCourt}"></input>
                 <input name="extensionFichierOriginal" type="text" value="#{fileUploadView.extensionFichier}"></input>
@@ -84,18 +83,43 @@
                 <p>Nombre de pages à supprimer<input id="nbrePagesSuppr" name="nbrePages" value="#{inputNumberView.nbrePagesSuppression}" placeholder="Nombre de pages à supprimer"/></p>  
                 <button type="submit" id="val" class="ui-priority-primary">SUPPRIMER DES PAGES</button>
             </form>
+            <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+                <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
+            </p:dialog>
+            <h:form>   
+                <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+                    <p:fileDownload value="#{fileDownloadView.file}" />
+                </p:commandButton>      
+            </h:form>
+
+
+
+
+
             <hr />
-
-
             <br />
             <br />
             <br />
             <br />
+            <hr />
+            <h:outputText value=" TRANSFORMER UNE IMAGE EN PDF : " />        
+            <form action="ServletRecupNomFichier" method="post">
+                <input type="text" hidden="" value="imageEnPdf" name="choixOperation"/>
+                <button type="submit" id="val" class="ui-priority-primary">IMAGE EN PDF</button>
+            </form>
+            <h:form>   
+                <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+                    <p:fileDownload value="#{fileDownloadView.file}" />
+                </p:commandButton>      
+            </h:form>
+            <hr />
+            <br />
+            <br />
+            <br />
 
 
 
 
-         
 
             <br />
             <h:form>

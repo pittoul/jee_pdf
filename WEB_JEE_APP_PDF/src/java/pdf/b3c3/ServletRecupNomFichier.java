@@ -9,10 +9,13 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import static com.itextpdf.kernel.pdf.PdfName.List;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.text.DocumentException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +38,7 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String nom = request.getParameter("nomFichierOriginal");
@@ -43,19 +46,26 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
             String extension = request.getParameter("extensionFichierOriginal");
             String pageDepart = request.getParameter("pageDepart");
             String nbrePages = request.getParameter("nbrePages");
+            String operation = request.getParameter("choixOperation");
             Enumeration<String> lesParametres = request.getParameterNames();
             System.out.println("Les paramètres de la requete sont : ");
             while (lesParametres.hasMoreElements()) {
                 String s = lesParametres.nextElement();
                 System.out.println(s);
             }
-            
-            SupprPageFromPdf spr = new SupprPageFromPdf();
-            spr.supprPages(Integer.parseInt(pageDepart), Integer.parseInt(nbrePages));
-            
-            
-            
-            
+            switch (operation) {
+                case "supprimerPages":
+                    SupprPageFromPdf spr = new SupprPageFromPdf();
+                    spr.supprPages(Integer.parseInt(pageDepart), Integer.parseInt(nbrePages));
+                    break;
+                case "imageEnPdf":
+                    ImageToPDF itp = new ImageToPDF();
+                    itp.ImageToPDF();
+                    break;
+                default:
+                // code block
+            }
+
             System.out.println("\ndans le Servlet RecupNom : " + nom + ",\nNom Court : " + nomCourt + ", \nExtension : " + extension);
             System.out.println("\nnbre pages : " + nbrePages + ", \npageDepart : " + pageDepart);
             response.sendRedirect(request.getHeader("referer"));
@@ -88,7 +98,11 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DocumentException ex) {
+            Logger.getLogger(ServletRecupNomFichier.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -102,7 +116,11 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DocumentException ex) {
+            Logger.getLogger(ServletRecupNomFichier.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
