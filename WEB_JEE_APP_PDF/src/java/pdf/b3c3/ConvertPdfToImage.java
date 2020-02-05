@@ -23,7 +23,8 @@ public class ConvertPdfToImage {
     public void ConvertPdfToImage() throws IOException, DocumentException {
         
         String pdfFileName = destination +"\\upload.pdf";
-        
+        String pdfDir = destination + "\\DossierImage\\";
+        new File(pdfDir).mkdirs();
         PDDocument document = PDDocument.loadNonSeq(new File(pdfFileName), null);
         List<PDPage> pdPages = document.getDocumentCatalog().getAllPages();
         int page = 0;
@@ -31,7 +32,7 @@ public class ConvertPdfToImage {
         { 
             ++page;
             BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
-            ImageIOUtil.writeImage(bim, pdfFileName + "-" + page + ".png", 300);
+            ImageIOUtil.writeImage(bim, pdfDir + page + ".png", 300);
         }                  
     document.close();
     }
