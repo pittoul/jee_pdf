@@ -37,6 +37,7 @@ public class FileUploadView implements IChemin {
 //    private String cheminImg = "";
 //    private String afficheImg = "";
 
+
     public String getExtensionFichier() {
         return extensionFichier;
     }

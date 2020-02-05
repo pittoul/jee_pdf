@@ -62,6 +62,10 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
                     ImageToPDF itp = new ImageToPDF();
                     itp.ImageToPDF();
                     break;
+                case "PdfenImage":
+                    ConvertPdfToImage pti = new ConvertPdfToImage();
+                    pti.ConvertPdfToImage();
+                    break;
                 default:
                 // code block
             }

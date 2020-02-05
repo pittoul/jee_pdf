@@ -65,9 +65,9 @@
                 <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
             </h:form>
 
-
-
-
+            
+            
+            
             <br />
             <br />
             <br />
@@ -116,6 +116,18 @@
             <br />
             <br />
             <br />
+            
+            
+            <h:outputText value=" TRANSFORMER UN IMAGE EN PDF : " />        
+            <form action="ServletRecupNomFichier" method="post">
+                <input type="text" hidden="" value="PdfenImage" name="choixOperation"/>
+                <button type="submit" id="val" class="ui-priority-primary">PDF EN IMAGE</button>
+            </form>
+            <h:form>   
+                <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+                    <p:fileDownload value="#{fileDownloadView.file}" />
+                </p:commandButton>      
+            </h:form>
 
 
 
