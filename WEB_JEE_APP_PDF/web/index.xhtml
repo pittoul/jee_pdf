@@ -54,6 +54,13 @@
                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                 <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
             </h:form>
+<<<<<<< HEAD
+=======
+
+            
+            
+            
+>>>>>>> 784cd5bd995f25fb7bc1a7e20f14f0eeaa2ab206
             <br />
             <br />
             <br />
@@ -100,6 +107,7 @@
             <br />
             <br />
             <br />
+<<<<<<< HEAD
             <!--PARTIE FUSIONNER 2 PDF-->
             <hr />
             <h:outputText value="FUSIONNER 2 PDF : " />   
@@ -122,11 +130,29 @@
             <form action="ServletRecupNomFichier" method="post">
                 <input type="text" hidden="" value="fusionnerPdf" name="choixOperation"/>
                 <button type="submit" id="val" class="ui-priority-primary">FUSIONNER LES PDF</button>
+            
+            
+            <h:outputText value=" TRANSFORMER UNE IMAGE EN PDF : " />        
+            <form action="ServletRecupNomFichier" method="post">
+                <input type="text" hidden="" value="PdfenImage" name="choixOperation"/>
+                <button type="submit" id="val" class="ui-priority-primary">PDF EN IMAGE</button>
             </form>
             <h:form>   
                 <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
                     <p:fileDownload value="#{fileDownloadView.file}" />
                 </p:commandButton>      
+            </h:form>
+
+
+
+
+
+            <br />
+            <h:form>
+                <p:row>  
+                    <p:commandButton  class="ui-priority-primary" value="Fusionner 2 Pdf's" action="#{supprPageFromPdf.supprPages}" />
+                </p:row>
+>>>>>>> 784cd5bd995f25fb7bc1a7e20f14f0eeaa2ab206
             </h:form>
             <hr />
             <br />

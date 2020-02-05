@@ -73,6 +73,9 @@ public class ServletRecupNomFichier extends HttpServlet implements IChemin {
                 case "signerPDF":
 //                    ImageToPDF itp = new ImageToPDF();
 //                    itp.ImageToPDF();
+                case "PdfenImage":
+                    ConvertPdfToImage pti = new ConvertPdfToImage();
+                    pti.ConvertPdfToImage();
                     break;
                 default:
                 // code block
