@@ -17,6 +17,7 @@ public class InputNumberView implements Serializable {
  
     private int pageDepartSuppression;
     private int nbrePagesSuppression;
+    private int nbrePagesExtraction;
     private Double input1 = new Double(0);
     private Double input2 = new Double(0);
     private Double input3 = new Double(0);
@@ -30,6 +31,7 @@ public class InputNumberView implements Serializable {
     public InputNumberView() {
         nbrePagesSuppression = 0;
         pageDepartSuppression = 0;
+        nbrePagesExtraction = 0;
         input1 = 0d;
         input2 = 0d;
         input3 = 0d;
@@ -54,7 +56,17 @@ public class InputNumberView implements Serializable {
     public void setPageDepartSuppression(int pageDepartSuppression) {
         this.pageDepartSuppression = pageDepartSuppression;
     }
+
+    public int getNbrePagesExtraction() {
+        return nbrePagesExtraction;
+    }
+
+    public void setNbrePagesExtraction(int nbrePagesExtraction) {
+        this.nbrePagesExtraction = nbrePagesExtraction;
+    }
  
+    
+    
     public Double getInput1() {
         return input1;
     }
