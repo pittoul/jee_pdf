@@ -16,10 +16,12 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.jasper.tagplugins.jstl.ForEach;
 
 /**
@@ -41,9 +43,19 @@ public class ServletPdfEnImage extends HttpServlet implements IChemin {
             throws ServletException, IOException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String nom = request.getParameter("nomFichierOriginal");
+
             System.out.println("Dans servlet PDF EN IMG");
             ConvertPdfToImage pti = new ConvertPdfToImage();
-            pti.ConvertPdfToImage();
+            pti.ConvertPdfToImage(nom);
+
+            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadFile");
+            disp.forward(request, response); // comme un include. Permet d'envoyer vers le servlet2
+            HttpSession maSession = request.getSession();
+
+            maSession.setAttribute("nomFichier", nom);
+            maSession.setAttribute("operation", "pdfEnImg_");
+
             /**
              * Redirection:
              */

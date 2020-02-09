@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,9 +37,19 @@ public class ServletImgEnPdf extends HttpServlet implements IChemin {
             throws ServletException, IOException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("On est dans le try");
+//            System.out.println("On est dans le try");
+            String nom = request.getParameter("nomFichierOriginal");
+
             ConvertPdfToImage pti = new ConvertPdfToImage();
-            pti.ConvertPdfToImage();
+            pti.ConvertPdfToImage(nom);
+
+            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadFile");
+            disp.forward(request, response); // comme un include. Permet d'envoyer vers le servlet2
+            HttpSession maSession = request.getSession();
+
+            maSession.setAttribute("nomFichier", nom);
+            maSession.setAttribute("operation", "imgEnPdf_");
+
             /**
              * Redirection:
              */

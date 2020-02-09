@@ -33,7 +33,7 @@ public class SupprPageFromPdf implements IChemin {
 //        recuperer nom fichier:
 //    pathnames = f.list();
     
-        SRC = SRC + "uploadedSuppr_" + nomFichier;
+        SRC = SRC + "upload_" + nomFichier;
         DEST = DEST + "changedSuppr_" + nomFichier;
     // For each pathname in the pathnames array
 //        for (String pathname : pathnames) {

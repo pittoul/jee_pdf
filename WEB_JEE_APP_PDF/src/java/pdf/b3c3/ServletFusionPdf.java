@@ -42,6 +42,20 @@ public class ServletFusionPdf extends HttpServlet implements IChemin {
             throws ServletException, IOException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String nom1 = request.getParameter("nomFichierOriginal1");
+            String nom2 = request.getParameter("nomFichierOriginal2");
+
+            System.out.println("FICHIER 1: -->" + nom1);
+            System.out.println("FICHIER 1: -->" + nom2);
+            String[] files = {nom1, nom2};
+
+            FusionPDF fusion = new FusionPDF();
+            try {
+//            fusion.mergeFiles(files, "fusionPDF.pdf", true);
+                fusion.manipulatePdf(files, "fusionPDF.pdf");
+            } catch (Exception e) {
+                System.out.println("erreur" + e);
+            }
             /**
              * Redirection:
              */

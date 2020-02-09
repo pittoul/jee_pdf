@@ -27,16 +27,16 @@ import javax.inject.Named;
 @RequestScoped
 public class ImageToPDF implements IChemin {
 
-    public void ImageToPDF() throws IOException, DocumentException {
+    public void ImageToPDF(String nomFichier) throws IOException, DocumentException {
 
-        String url = destination + "\\upload.jpg";
+        String url = destination + "\\upload_" + nomFichier;
         Image img = Image.getInstance(url);
         BufferedImage bimg = ImageIO.read(new File(url));
         int width = bimg.getWidth();
         int height = bimg.getHeight();
         Rectangle pageSize = new Rectangle(width, height);
         Document document = new Document(pageSize);
-        PdfWriter.getInstance(document, new FileOutputStream(destination + "/newPDF.pdf"));
+        PdfWriter.getInstance(document, new FileOutputStream(destination + "/imgEnPdf_" + nomFichier));
         document.open();
         img.scaleAbsoluteHeight(height);
         img.scaleAbsoluteWidth(width);

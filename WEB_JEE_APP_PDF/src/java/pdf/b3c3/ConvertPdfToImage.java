@@ -15,14 +15,14 @@ import javax.faces.context.FacesContext;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.util.ImageIOUtil;
-import static pdf.b3c3.IChemin.destination;
+//import static pdf.b3c3.IChemin.destination;
 
 
 
-public class ConvertPdfToImage {
-    public void ConvertPdfToImage() throws IOException, DocumentException {
+public class ConvertPdfToImage implements IChemin{
+    public void ConvertPdfToImage(String nomFichier) throws IOException, DocumentException {
         
-        String pdfFileName = destination +"\\upload.pdf";
+        String pdfFileName = destination +"\\upload_" + nomFichier;
         String pdfDir = destination + "\\DossierImage\\";
         new File(pdfDir).mkdirs();
         PDDocument document = PDDocument.loadNonSeq(new File(pdfFileName), null);
