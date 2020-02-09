@@ -17,7 +17,7 @@ import org.primefaces.model.StreamedContent;
  */
 @Named
 @RequestScoped
-public class FileDownloadView {
+public class FileDownloadView implements IChemin{
  
     private StreamedContent file;
  

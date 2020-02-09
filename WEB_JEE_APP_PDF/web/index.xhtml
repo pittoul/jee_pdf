@@ -29,14 +29,7 @@
                     <h:outputText class="my-auto h1" value="Couteau Suisse PDF" />     
                 </div>
                 <!--</f:facet>-->
-                <!--PARTIE UPLOAD-->
-                <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
-                    <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
-                    <h:outputText value=" -----> " />        
-                    <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-                    <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
-                    <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
-                </h:form>
+
                 <!--PARTIE SUPPRIMER PAGES DU PDF-->
                 <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
@@ -45,6 +38,23 @@
                             <h4>SUPPRIMER DES PAGES D'UN PDF</h4>  
                         </div>
                     </div>
+
+                    <!--PARTIE UPLOAD-->
+                    <div class="row mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded">
+                        <div class="col-12 text-center">
+                            <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
+                                <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
+                                <h:outputText value=" -----> " />        
+                                <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
+                                <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
+                            </h:form>
+                        </div>
+                    </div>
+
+
+
+
+
                     <div class="row bg-success mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded">
                         <div class="col text-center">
                             <form action="ServletSupprPages" method="post">
@@ -59,11 +69,9 @@
                     </div>
                     <div class="row">
                         <div class="col text-center pt-4 pb-3">
-                            <h:form>   
-                                <p:commandButton styleClass="btn btn-secondary" value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                                    <p:fileDownload value="#{fileDownloadView.file}" />
-                                </p:commandButton>      
-                            </h:form>
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -194,9 +202,9 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <!--<f:facet name="footer">-->
-                                <h3>PDF</h3>
-                                <embed src="#{fileUploadView.cheminFichier}/upload.pdf" width="500" height="375" 
-                                       type="application/pdf"></embed>
+                            <h3>PDF</h3>
+                            <embed src="#{fileUploadView.cheminFichier}/upload.pdf" width="500" height="375" 
+                                   type="application/pdf"></embed>
                         </div>
                     </div>
                     <h:form>   

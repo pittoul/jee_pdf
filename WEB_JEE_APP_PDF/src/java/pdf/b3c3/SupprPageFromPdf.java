@@ -3,7 +3,9 @@ package pdf.b3c3;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -20,11 +22,26 @@ import javax.inject.Named;
 @RequestScoped
 public class SupprPageFromPdf implements IChemin {
 
-    private String nomFichierOriginal;
-    private final String SRC = destination + "\\" + "upload.pdf";
-    private final String DEST = destination + "\\" + "changed.pdf";
+//    private String nomFichierOriginal;
+    File f = new File(destination);
+    private String[] pathnames;
+    private String SRC = destination + "\\";
+    private String DEST = destination + "\\";
 
-    public void supprPages(int pageDeDepart, int nbreDePages) throws IOException {
+    public void supprPages(String nomFichier, int pageDeDepart, int nbreDePages) throws IOException {
+        
+//        recuperer nom fichier:
+//    pathnames = f.list();
+    
+        SRC = SRC + "uploadedSuppr_" + nomFichier;
+        DEST = DEST + "changedSuppr_" + nomFichier;
+    // For each pathname in the pathnames array
+//        for (String pathname : pathnames) {
+//            // Print the names of files and directories
+//            System.out.println(" - - - - - - - From SupprPageFromPdf");
+//            System.out.println(pathname);
+//        }
+
         PdfReader reader = new PdfReader(SRC);
         PdfWriter writer = new PdfWriter(DEST);
         PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
@@ -39,6 +56,8 @@ public class SupprPageFromPdf implements IChemin {
                 }
             }
         }
+        
+        System.out.println("Dans bean Suppr " );
         reader.close();
         writer.close();
     }

@@ -6,12 +6,15 @@
 package pdf.b3c3;
 
 import com.itextpdf.text.DocumentException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author nimen
  */
-public class ServletSupprPages extends HttpServlet implements IChemin {
+public class ServletDownloadFile extends HttpServlet implements IChemin {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,34 +41,11 @@ public class ServletSupprPages extends HttpServlet implements IChemin {
             throws ServletException, IOException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String nom = request.getParameter("nomFichierOriginal");
-//            String nomCourt = request.getParameter("nomCourtFichierOriginal");
-//            String extension = request.getParameter("extensionFichierOriginal");
-            String pageDepart = request.getParameter("pageDepart");
-            String nbrePages = request.getParameter("nbrePages");
-//            Enumeration<String> lesParametres = request.getParameterNames();
-//            System.out.println("Les paramètres de la requete sont : ");
-//            while (lesParametres.hasMoreElements()) {
-//                String s = lesParametres.nextElement();
-//                System.out.println(s);
-//            }
-//
-            SupprPageFromPdf spr = new SupprPageFromPdf();
-            spr.supprPages(nom, Integer.parseInt(pageDepart), Integer.parseInt(nbrePages));
-            System.out.println("SUPPRESSION DE PAGES TERMINEE !");
-//            System.out.println("\ndans le Servlet RecupNom : " + nom + ",\nNom Court : " + nomCourt + ", \nExtension : " + extension);
-//            System.out.println("\nnbre pages : " + nbrePages + ", \npageDepart : " + pageDepart);
-//            System.out.println("\nAdresse du fichier : " + destination + "\\" + nom);
-            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadFile");
-            disp.forward(request, response); // comme un include. Permet d'envoyer vers le servlet2
-            HttpSession maSession = request.getSession();
 
-            maSession.setAttribute("nomFichier", nom);
-            maSession.setAttribute("operation", "changedSuppr_");
-//            /**
-//             * Redirection:
-//             */
-//            response.sendRedirect(request.getHeader("referer"));
+            /**
+             * Redirection:
+             */
+            response.sendRedirect(request.getHeader("referer"));
         }
     }
 
@@ -79,13 +59,57 @@ public class ServletSupprPages extends HttpServlet implements IChemin {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (DocumentException ex) {
-            Logger.getLogger(ServletSupprPages.class.getName()).log(Level.SEVERE, null, ex);
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        // Pour transmettre les données à l 'autre page !
+        HttpSession maSession = request.getSession();
+        String nomFichier = (String) maSession.getAttribute("nomFichier");
+        String operationChoisie = (String) maSession.getAttribute("operation");
+
+        System.out.println("* * * * * * * * * SERVLET DL* * * * * * * * * " + nomFichier);
+
+        String filePath = destination + "\\" + operationChoisie + nomFichier;
+        System.out.println("FILE LOCATION POUR DL-> " + filePath);
+
+        File downloadFile = new File(filePath);
+        FileInputStream inStream = new FileInputStream(downloadFile);
+
+        ServletContext context = getServletContext();
+
+        // gets MIME type of the file
+        String mimeType = context.getMimeType(filePath);
+        if (mimeType == null) {
+            // set to binary type if MIME mapping not found
+            mimeType = "application/octet-stream";
         }
+        System.out.println("MIME type: " + mimeType);
+
+        // modifies response
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+
+        // forces download
+        String headerKey = "Content-Disposition";
+//        String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
+        String headerValue = String.format("attachment; filename=\"%s\"", nomFichier);
+        response.setHeader(headerKey, headerValue);
+
+        // obtains response's output stream
+        OutputStream outStream = response.getOutputStream();
+
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+
+        while ((bytesRead = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+
+        inStream.close();
+        outStream.close();
+        /**
+         * Redirection:
+         */
+//            response.sendRedirect(request.getHeader("referer"));
     }
 
     /**

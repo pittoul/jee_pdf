@@ -103,7 +103,8 @@ public class FileUploadView implements IChemin {
     public void upload() throws IOException {
         if (file != null) {
             String cheminDoc = destination + "\\" + file.getFileName();
-            this.cheminFichier = destination + "\\upload.pdf";
+            this.cheminFichier = destination + "\\uploadedSuppr_" + file.getFileName();
+
             FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());
@@ -122,7 +123,7 @@ public class FileUploadView implements IChemin {
             this.extensionFichier = extension;
             InputStream input = file.getInputstream();
 //            OutputStream output = new FileOutputStream(new File(destination, (filenameShort + "_original.pdf")));
-            OutputStream output = new FileOutputStream(new File(destination, ("upload." + extension)));
+            OutputStream output = new FileOutputStream(new File(destination, ("uploadedSuppr_" + filename)));
             System.out.println("chemin : " + cheminDoc);
             // Copy the contents of the file to the output stream
             try {

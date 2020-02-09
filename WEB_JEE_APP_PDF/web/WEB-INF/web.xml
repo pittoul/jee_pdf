@@ -14,6 +14,15 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ServletDownloadFile</servlet-name>
+        <servlet-class>pdf.b3c3.ServletDownloadFile</servlet-class>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>ServletDownloadFile</servlet-name>
+        <url-pattern>/ServletDownloadFile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>ServletSupprPages</servlet-name>
         <servlet-class>pdf.b3c3.ServletSupprPages</servlet-class>
     </servlet>
