@@ -8,7 +8,7 @@
         <title>Utilitaires PDF</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
     </h:head>
-    <h:body class="bg-secondary">
+    <h:body class="bg-white">
         <p:growl id="messages" showDetail="true" />
         <script type="text/javascript">
             //<![CDATA[
@@ -23,10 +23,10 @@
         <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
             <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
         </p:dialog>
-        <div class="container bg-success rounded pt-5 pb-5 pl-5 pr-5">
-            <p:panel styleClass="container bg-warning rounded shadow-sm" >
-                <div class="col-12 bg-info text-center mt-3 pt-4 pb-4 mb-4 rounded sticky-top">
-                    <h:outputText class="my-auto h1" value="Couteau Suisse PDF" />     
+        <div class="container rounded pt-5 pb-5 pl-5 pr-5">
+            <p:panel styleClass="container bg-info rounded shadow-sm" >
+                <div class="col-12 bg-secondary text-center mt-3 pt-4 pb-4 mb-4 rounded sticky-top">
+                    <h:outputText class="my-auto h1 text-light" value="Couteau Suisse PDF" />     
                 </div>
                 <!--</f:facet>-->
 
@@ -75,34 +75,36 @@
                         </div>
                     </div>
                 </div>
-                <hr />
+                <!--        </div>
+                        </p:panel>-->
                 <!--PARTIE TRANSFORMER IMG EN PDF-->
                 <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h4>TRANSFORMER UNE IMAGE EN PDF :</h4>  
+                        <div class="col-12 text-center mb-1">
+                            <h4>Transformer une image en PDF</h4>
                         </div>
                     </div>
-                    <form action="ServletImgEnPdf" method="post">
-                        <button type="submit" id="val" class="btn btn-secondary">IMAGE EN PDF</button>
-                    </form>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                            <p:fileDownload value="#{fileDownloadView.file}" />
-                        </p:commandButton>      
-                    </h:form>
+                    <div class="row d-flex justify-content-center">
+                        <form action="ServletImgEnPdf" method="post">
+                            <button type="submit" id="val" class="btn btn-secondary mr-1">Image en PDF</button>
+                        </form>
+                        <h:form>   
+                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" class="h-100 ml-1">
+                                <p:fileDownload value="#{fileDownloadView.file}" />
+                            </p:commandButton>      
+                        </h:form>
+                    </div>
                 </div>
                 <hr />
                 <!--PARTIE FUSIONNER 2 PDF-->
-                <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h:outputText value="FUSIONNER 2 PDF : " />   
+                        <div class="col-12 text-center mb-1">
+                            <h4>Fusionner deux PDF</h4>  
                         </div>
                     </div>
-                    <p><h:outputText value="PDF1" /><br />  
+                    <p><h:outputText value="Premier PDF" /><br />  
                         <h:form enctype="multipart/form-data" >  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
                             <h:outputText value=" -----> " />        
@@ -110,7 +112,7 @@
                             <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
                         </h:form></p>
-                    <p><h:outputText value="PDF2" />
+                    <p><h:outputText value="Second PDF" />
                         <h:form enctype="multipart/form-data" >  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
                             <h:outputText value=" -----> " />        
@@ -118,35 +120,37 @@
                             <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
                         </h:form></p>
-                    <form action="ServletFusionPdf" method="post">
-                        <button type="submit" id="val" class="btn btn-secondary">FUSIONNER LES PDF</button>
-                    </form>
+                    <div class="row d-flex justify-content-center">
+                        <form action="ServletFusionPdf" method="post">
+                            <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF</button>
+                        </form>
+                    </div>
                 </div>
                 <hr />
                 <!--PARTIE TRANSFORMER IMG EN PDF-->
-                <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h:outputText value=" TRANSFORMER UNE IMAGE EN PDF : " /> 
+                        <div class="col-12 text-center mb-1">
+                            <h4>Transformer un PDF en image</h4>
                         </div>
                     </div>
-                    <form action="ServletPdfEnImage" method="post">
-                        <button type="submit" id="val" class="btn btn-secondary">PDF EN IMAGE</button>
-                    </form>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                            <p:fileDownload value="#{fileDownloadView.file}" />
-                        </p:commandButton>      
-                    </h:form>
+                    <div class="row d-flex justify-content-center">
+                        <form action="ServletPdfEnImage" method="post">
+                            <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
+                        </form>
+                        <h:form>   
+                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" class="h-100 ml-1">
+                                <p:fileDownload value="#{fileDownloadView.file}" />
+                            </p:commandButton>      
+                        </h:form>
+                    </div>
                 </div>
-                <hr />
                 <!--PARTIE EXTRAIRE PAGES PDF-->
                 <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h:outputText value=" EXTRAIRE DES PAGES D'UN PDF : " />    
+                        <div class="col-12 text-center mb-1">
+                            <h4>Extraire des page d'un PDF</h4>
                         </div>
                     </div>
                     <form action="ServletExtrairesPagesPdf" method="post">
@@ -154,22 +158,23 @@
                         <input name="nomCourtFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomCourt}"></input>
                         <input name="extensionFichierOriginal" hidden="" type="text" value="#{fileUploadView.extensionFichier}"></input>
                         <p>Page de départ : <input id="pageDepartSuppr" name="pageDepart" value="#{inputNumberView.pageDepartSuppression}" placeholder="Page de départ" /></p>
-                        <p>Nombre de pages à extraire<input id="nbrePagesExtraire" name="nbrePagesExtraire" value="#{inputNumberView.nbrePagesExtraction}" placeholder="Nombre de pages à supprimer"/></p>  
-                        <p><button type="submit" id="val" class="btn btn-secondary">EXTRAIRE DES PAGES</button></p>
+                        <p>Nombre de pages à extraire : <input id="nbrePagesExtraire" name="nbrePagesExtraire" value="#{inputNumberView.nbrePagesExtraction}" placeholder="Nombre de pages à supprimer"/></p>
                     </form>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                            <p:fileDownload value="#{fileDownloadView.file}" />
-                        </p:commandButton>      
-                    </h:form>
+                    <div class="row d-flex justify-content-center">
+                        <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
+                        <h:form>   
+                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" class="h-100 ml-1">
+                                <p:fileDownload value="#{fileDownloadView.file}" />
+                            </p:commandButton>      
+                        </h:form>
+                    </div>
                 </div>
                 <hr />
                 <!--PARTIE SIGNER PDF-->
-                <hr />
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <h:outputText value=" SIGNER UN PDF : " />  
+                        <div class="col-12 text-center mb-1">
+                            <h4>Signer un PDF</h4>
                         </div>
                     </div>
                     <p><h:outputText value="PDF à signer" /><br />  
@@ -187,29 +192,32 @@
                             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                             <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
-                        </h:form></p> 
-                    <form action="ServletSignerPdf" method="post">
-                        <button type="submit" id="val" class="btn btn-secondary">SIGNER PDF</button>
-                    </form>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                            <p:fileDownload value="#{fileDownloadView.file}" />
-                        </p:commandButton>      
-                    </h:form>
-                </div>
-                <hr />
-                <div class="container bg-white rounded mb-3 pl-3 pt-3 pb-3 pr-3">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <!--<f:facet name="footer">-->
-                            <h3>PDF</h3>
-                            <embed src="#{fileUploadView.cheminFichier}/upload.pdf" width="500" height="375" 
-                                   type="application/pdf"></embed>
+                        </h:form></p>
+                    <div class="row d-flex justify-content-center">
+                        <form action="ServletSignerPdf" method="post">
+                            <button type="submit" id="val" class="btn btn-secondary mr-1">Signer un PDF</button>
+                        </form>
+                        <h:form>   
+                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" class="h-100 ml-1">
+                                <p:fileDownload value="#{fileDownloadView.file}" />
+                            </p:commandButton>      
+                        </h:form>
+                    </div>
+                    <hr />
+                    <div class="container bg-white rounded mb-3 pl-3 pt-3 pb-3 pr-3">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <!--<f:facet name="footer">-->
+                                <h3>PDF</h3>
+                                <embed src="#{fileUploadView.cheminFichier}/upload.pdf" width="500" height="375" 
+                                       type="application/pdf"></embed>
+                            </div>
+
                         </div>
                     </div>
                     <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
-                            <p:fileDownload value="#{fileDownloadView.downloadValue}" />
+                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+                            <p:fileDownload value="#{fileDownloadView.downloadValue}"/>
                         </p:commandButton>      
                     </h:form>
                     <!--</f:facet>-->
