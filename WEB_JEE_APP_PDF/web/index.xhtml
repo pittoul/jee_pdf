@@ -86,14 +86,19 @@
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <form action="ServletImgEnPdf" method="post">
-                            <button type="submit" id="val" class="btn btn-secondary mr-1">Image en PDF</button>
-                        </form>
-                        <h:form>   
-                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" class="h-100 ml-1">
-                                <p:fileDownload value="#{fileDownloadView.file}" />
-                            </p:commandButton>      
-                        </h:form>
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletImgEnPdf" method="post">
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">Image en PDF</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -121,9 +126,19 @@
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
                         </h:form></p>
                     <div class="row d-flex justify-content-center">
-                        <form action="ServletFusionPdf" method="post">
-                            <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF</button>
-                        </form>
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletFusionPdf" method="post">
+                                <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -135,14 +150,18 @@
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <form action="ServletPdfEnImage" method="post">
-                            <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
-                        </form>
-                        <h:form>   
-                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" class="h-100 ml-1">
-                                <p:fileDownload value="#{fileDownloadView.file}" />
-                            </p:commandButton>      
-                        </h:form>
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletPdfEnImage" method="post">
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!--PARTIE EXTRAIRE PAGES PDF-->
@@ -161,12 +180,17 @@
                         <p>Nombre de pages à extraire : <input id="nbrePagesExtraire" name="nbrePagesExtraire" value="#{inputNumberView.nbrePagesExtraction}" placeholder="Nombre de pages à supprimer"/></p>
                     </form>
                     <div class="row d-flex justify-content-center">
-                        <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
-                        <h:form>   
-                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" class="h-100 ml-1">
-                                <p:fileDownload value="#{fileDownloadView.file}" />
-                            </p:commandButton>      
-                        </h:form>
+                        <div class="col text-center pt-4 pb-3">
+                            <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -194,15 +218,21 @@
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}"/>
                         </h:form></p>
                     <div class="row d-flex justify-content-center">
-                        <form action="ServletSignerPdf" method="post">
-                            <button type="submit" id="val" class="btn btn-secondary mr-1">Signer un PDF</button>
-                        </form>
-                        <h:form>   
-                            <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" class="h-100 ml-1">
-                                <p:fileDownload value="#{fileDownloadView.file}" />
-                            </p:commandButton>      
-                        </h:form>
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletSignerPdf" method="post">
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">Signer un PDF</button>
+                            </form>
+
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col text-center pt-4 pb-3">
+                            <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                     <hr />
                     <div class="container bg-white rounded mb-3 pl-3 pt-3 pb-3 pr-3">
                         <div class="row">
@@ -215,13 +245,9 @@
 
                         </div>
                     </div>
-                    <h:form>   
-                        <p:commandButton value="Télécharger le résultat" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
-                            <p:fileDownload value="#{fileDownloadView.downloadValue}"/>
-                        </p:commandButton>      
-                    </h:form>
+                    
                     <!--</f:facet>-->
-                </div>
+                <!--</div>-->
             </p:panel>
         </div>
     </h:body>
