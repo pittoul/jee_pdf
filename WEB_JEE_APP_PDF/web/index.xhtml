@@ -44,22 +44,22 @@
                         <div class="col-12 text-center">
                             <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
                                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
-                                <h:outputText value=" Puis -> " />        
+                                <h:outputText value=" → " />        
                                 <p:commandButton value="Envoyer le document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             </h:form>
                         </div>
                     </div>
 
-                    <div class="row bg-success mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded">
+                    <div class="row bg-warning mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded">
                         <div class="col text-center">
                             <form action="ServletSupprPages" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
                                 <input name="nomCourtFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomCourt}"></input>
                                 <input name="extensionFichierOriginal" hidden="" type="text" value="#{fileUploadView.extensionFichier}"></input>
                                 <p>Page de départ : <input id="pageDepartSuppr" name="pageDepart" value="#{inputNumberView.pageDepartSuppression}" placeholder="Page de départ" /></p>
-                                <p>Nombre de pages à supprimer<input id="nbrePagesSuppr" name="nbrePages" value="#{inputNumberView.nbrePagesSuppression}" placeholder="Nombre de pages à supprimer"/></p>  
-                                <p><button type="submit" id="val" class="btn btn-secondary">SUPPRIMER DES PAGES</button></p>
+                                <p>Nombre de pages à supprimer : <input id="nbrePagesSuppr" name="nbrePages" value="#{inputNumberView.nbrePagesSuppression}" placeholder="Nombre de pages à supprimer"/></p>  
+                                <p><button type="submit" id="val" class="btn btn-secondary">Supprimer des pages</button></p>
                             </form>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="col-12 text-center">
                             <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
                                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un Pdf" />
-                                <h:outputText value=" Puis -> " />        
+                                <h:outputText value=" → " />        
                                 <p:commandButton value="Envoyer le document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             </h:form>
@@ -101,9 +101,6 @@
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">Transformer un Pdf en Images</button>
                             </form>
                         </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary" disabled='true'>Télécharger les images</button></p>
@@ -125,7 +122,7 @@
                     <p><h:outputText value="Premier PDF" /><br />  
                         <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded text-center">  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
-                            <h:outputText value=" -----> " />        
+                            <h:outputText value=" → " />        
                             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                             <p:inputText  disabled="true" value="#{fileUploadView.nomFichier}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}" style="display:none"/>
@@ -133,7 +130,7 @@
                     <p><h:outputText value="Second PDF" />
                         <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded text-center">  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
-                            <h:outputText value=" -----> " />        
+                            <h:outputText value=" → " />        
                             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload2}" disabled="false" />
                             <p:inputText  disabled="true" value="#{fileUploadView.nomFichier2}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}" style="display:none"/>
@@ -146,9 +143,6 @@
                                 <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF</button>
                             </form>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
@@ -170,7 +164,7 @@
                         <div class="col-12 text-center">
                             <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
                                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un Pdf" />
-                                <h:outputText value=" Puis -> " />        
+                                <h:outputText value=" → " />        
                                 <p:commandButton value="Envoyer le document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             </h:form>
@@ -185,8 +179,6 @@
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
                             </form>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
@@ -208,14 +200,13 @@
                         <div class="col-12 text-center">
                             <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
                                 <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un Pdf" />
-                                <h:outputText value=" Puis -> " />        
+                                <h:outputText value=" → " />        
                                 <p:commandButton value="Envoyer le document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                                 <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             </h:form>
                         </div>
                     </div>
-
-                    <form action="ServletExtrairesPagesPdf" method="post">
+                    <form action="ServletExtrairesPagesPdf" method="post" class="row bg-warning mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded d-flex flex-column align-items-center">
                         <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
                         <input name="nomCourtFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomCourt}"></input>
                         <input name="extensionFichierOriginal" hidden="" type="text" value="#{fileUploadView.extensionFichier}"></input>
@@ -225,10 +216,7 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col text-center pt-4 pb-3">
                             <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
-
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
@@ -248,7 +236,7 @@
                     <p><h:outputText value="PDF à signer" /><br />  
                         <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded text-center">  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
-                            <h:outputText value=" -----> " />        
+                            <h:outputText value=" → " />        
                             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                             <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}" style="display:none"/>
@@ -256,7 +244,7 @@
                     <p><h:outputText value="Signature (fichier image)" />
                         <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded text-center">  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir la signature" />
-                            <h:outputText value=" -----> " />        
+                            <h:outputText value=" → " />        
                             <p:commandButton value="Envoyer un document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
                             <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
                             <p:inputText  disabled="true" value="#{fileUploadView.extensionFichier}" style="display:none"/>
@@ -266,10 +254,7 @@
                             <form action="ServletSignerPdf" method="post">
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">Signer un PDF</button>
                             </form>
-
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
