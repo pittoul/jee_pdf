@@ -152,12 +152,17 @@
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
+<<<<<<< HEAD
                             <form action="ServletDownloadFile" method="GET">
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+=======
+                            <form action="ServletDownloadZip" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">
                                         <h:link fragment="fusionnerPDF" style="color: white">
                                             Télécharger le fichier modifié
                                         </h:link>
                                     </button></p>
+>>>>>>> 9d61c921076ab0aad1f8c76d5320b07bf2a6e575
                             </form>
                         </div>
                     </div>
@@ -190,13 +195,16 @@
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletImgEnPdf" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
+<<<<<<< HEAD
                                 <input name="nomCourt" hidden="" type="text" value="#{fileUploadView.nomCourt}"></input>
-                                
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
+=======
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">
                                     <h:link fragment="transformerPDF" style="color: white">
                                         PDF en image
                                     </h:link>
                                 </button>
+>>>>>>> 9d61c921076ab0aad1f8c76d5320b07bf2a6e575
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
