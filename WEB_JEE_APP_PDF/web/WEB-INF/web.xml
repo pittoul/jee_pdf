@@ -59,12 +59,12 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>ServletPdfEnImg</servlet-name>
-        <servlet-class>pdf.b3c3.ServletPdfEnImg</servlet-class>
+        <servlet-name>ServletPdfEnImage</servlet-name>
+        <servlet-class>pdf.b3c3.ServletPdfEnImage</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletPdfEnImg</servlet-name>
-        <url-pattern>/ServletPdfEnImg</url-pattern>
+        <servlet-name>ServletPdfEnImage</servlet-name>
+        <url-pattern>/ServletPdfEnImage</url-pattern>
     </servlet-mapping>
     
     <servlet>
