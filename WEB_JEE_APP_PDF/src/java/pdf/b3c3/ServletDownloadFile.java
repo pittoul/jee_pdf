@@ -91,6 +91,10 @@ public class ServletDownloadFile extends HttpServlet implements IChemin {
         // forces download
         String headerKey = "Content-Disposition";
 //        String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
+
+            if (operationChoisie == "imgEnPdf") {
+                nomFichier = nomFichier + ".pdf";
+            }
         String headerValue = String.format("attachment; filename=\"%s\"", nomFichier);
         response.setHeader(headerKey, headerValue);
 

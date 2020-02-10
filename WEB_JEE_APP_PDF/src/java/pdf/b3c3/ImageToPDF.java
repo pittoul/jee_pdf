@@ -13,6 +13,7 @@ import java.io.IOException;
 import javax.enterprise.context.RequestScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Named;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +28,7 @@ import javax.inject.Named;
 @RequestScoped
 public class ImageToPDF implements IChemin {
 
-    public void ImageToPDF(String nomFichier) throws IOException, DocumentException {
+    public void ImageToPDF(String nomFichier, String nomCourt) throws IOException, DocumentException {
 
         String url = destination + "\\upload_" + nomFichier;
         Image img = Image.getInstance(url);
@@ -36,7 +37,9 @@ public class ImageToPDF implements IChemin {
         int height = bimg.getHeight();
         Rectangle pageSize = new Rectangle(width, height);
         Document document = new Document(pageSize);
-        PdfWriter.getInstance(document, new FileOutputStream(destination + "/imgEnPdf_" + nomFichier));
+//        nomFichier = substring(0, nomFichier.length() - 4);
+        PdfWriter.getInstance(document, new FileOutputStream(destination + "\\imgEnPdf_" + nomCourt + ".pdf"));
+//        PdfWriter.getInstance(document, new FileOutputStream(destination + "\\imgEnPdf_" + nomFichier));
         document.open();
         img.scaleAbsoluteHeight(height);
         img.scaleAbsoluteWidth(width);

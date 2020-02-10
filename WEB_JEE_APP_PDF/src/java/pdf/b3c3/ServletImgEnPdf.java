@@ -38,22 +38,26 @@ public class ServletImgEnPdf extends HttpServlet implements IChemin {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 //            System.out.println("On est dans le try");
+            String nomCourt = request.getParameter("nomCourt");
             String nom = request.getParameter("nomFichierOriginal");
 
-            ConvertPdfToImage pti = new ConvertPdfToImage();
-            pti.ConvertPdfToImage(nom);
+            ImageToPDF toPdf = new ImageToPDF();
+            
+            toPdf.ImageToPDF(nom, nomCourt);
+//            ConvertPdfToImage pti = new ConvertPdfToImage();
+//            pti.ConvertPdfToImage(nom);
 
-            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadZip");
+            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadFile");
             disp.forward(request, response); // comme un include. Permet d'envoyer vers le servlet2
             HttpSession maSession = request.getSession();
 
-            maSession.setAttribute("nomFichier", nom);
+            maSession.setAttribute("nomFichier", (nomCourt + ".pdf"));
             maSession.setAttribute("operation", "imgEnPdf_");
 
-            /**
+            /** 
              * Redirection:
              */
-            response.sendRedirect(request.getHeader("referer"));
+//            response.sendRedirect(request.getHeader("referer"));
         }
     }
 

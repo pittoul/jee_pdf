@@ -109,6 +109,8 @@
                     </div>
                 </div>
                 <hr />
+                
+                
                 <!--PARTIE FUSIONNER 2 PDF-->
                 <div id="partieFusion" class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
@@ -116,9 +118,6 @@
                             <h4>Fusionner deux PDF</h4>  
                         </div>
                     </div>
-
-
-
                     <p><h:outputText value="Premier PDF" /><br />  
                         <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded text-center">  
                             <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un pdf" />
@@ -152,6 +151,11 @@
                     </div>
                 </div>
                 <hr />
+                
+                
+                
+                
+                
                 <!--PARTIE TRANSFORMER IMG EN PDF-->
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
@@ -159,24 +163,22 @@
                             <h4>Transformer une image en PDF</h4>
                         </div>
                     </div>
-
                     <!--PARTIE UPLOAD-->
                     <div class="row mt-3 mb-3 ml-3 mr-3 pt-3 pb-3 rounded">
                         <div class="col-12 text-center">
                             <h:form enctype="multipart/form-data" styleClass="bg-danger pt-3 pb-3 pr-3 pl-3 rounded" >  
-                                <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir un Pdf" />
+                                <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true" label="Choisir une Image" />
                                 <h:outputText value=" → " />        
                                 <p:commandButton value="Envoyer le document" ajax="false" action="#{fileUploadView.upload}" disabled="false" />
-                                <p:inputText  disabled="true" value="#{fileUploadView.nomCourt}"/>
+                                <p:inputText  disabled="true" value="#{fileUploadView.nomFichier}"/>
                             </h:form>
                         </div>
                     </div>
-
-
                     <div class="row d-flex justify-content-center">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletImgEnPdf" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
+                                <input name="nomCourt" hidden="" type="text" value="#{fileUploadView.nomCourt}"></input>
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
                             </form>
                         </div>
