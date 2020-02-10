@@ -65,8 +65,8 @@ public class ServletDownloadFile extends HttpServlet implements IChemin {
         HttpSession maSession = request.getSession();
         String nomFichier = (String) maSession.getAttribute("nomFichier");
         String operationChoisie = (String) maSession.getAttribute("operation");
+        System.out.println("* * * * * * * * * SERVLET DL* * * * * * * * * " + nomFichier + " Operation " + operationChoisie );
 
-        System.out.println("* * * * * * * * * SERVLET DL* * * * * * * * * " + nomFichier);
 
         String filePath = destination + "\\" + operationChoisie + nomFichier;
         System.out.println("FILE LOCATION POUR DL-> " + filePath);
@@ -94,6 +94,8 @@ public class ServletDownloadFile extends HttpServlet implements IChemin {
 
             if (operationChoisie == "imgEnPdf") {
                 nomFichier = nomFichier + ".pdf";
+            } else {
+                // rien
             }
         String headerValue = String.format("attachment; filename=\"%s\"", nomFichier);
         response.setHeader(headerKey, headerValue);
