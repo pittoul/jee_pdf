@@ -79,6 +79,8 @@ public class FusionPDF implements IChemin {
         outputStream.flush();
         document.close();
         outputStream.close();
+        writer.close();
+        
 
         System.out.println("Pdf files merged successfully.");
     }

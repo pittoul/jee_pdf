@@ -17,23 +17,21 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.util.ImageIOUtil;
 //import static pdf.b3c3.IChemin.destination;
 
+public class ConvertPdfToImage implements IChemin {
 
-
-public class ConvertPdfToImage implements IChemin{
     public void ConvertPdfToImage(String nomFichier) throws IOException, DocumentException {
-        
-        String pdfFileName = destination +"\\upload_" + nomFichier;
+
+        String pdfFileName = destination + "\\upload_" + nomFichier;
         String pdfDir = destination + "\\DossierImage\\";
         new File(pdfDir).mkdirs();
         PDDocument document = PDDocument.loadNonSeq(new File(pdfFileName), null);
         List<PDPage> pdPages = document.getDocumentCatalog().getAllPages();
         int page = 0;
-        for (PDPage pdPage : pdPages)
-        { 
+        for (PDPage pdPage : pdPages) {
             ++page;
             BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
             ImageIOUtil.writeImage(bim, pdfDir + page + ".png", 300);
-        }                  
-    document.close();
+        }
+        document.close();
     }
 }

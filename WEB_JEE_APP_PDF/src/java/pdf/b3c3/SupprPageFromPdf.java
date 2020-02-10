@@ -51,5 +51,6 @@ public class SupprPageFromPdf implements IChemin {
         System.out.println("Dans bean Suppr " );
         reader.close();
         writer.close();
+        pdfDoc.close();
     }
 }
