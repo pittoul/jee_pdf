@@ -17,7 +17,7 @@
         <servlet-name>ServletDownloadFile</servlet-name>
         <servlet-class>pdf.b3c3.ServletDownloadFile</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletDownloadFile</servlet-name>
         <url-pattern>/ServletDownloadFile</url-pattern>
     </servlet-mapping>
@@ -26,7 +26,7 @@
         <servlet-name>ServletSupprPages</servlet-name>
         <servlet-class>pdf.b3c3.ServletSupprPages</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletSupprPages</servlet-name>
         <url-pattern>/ServletSupprPages</url-pattern>
     </servlet-mapping>
@@ -35,16 +35,16 @@
         <servlet-name>ServletExtrairesPagesPdf</servlet-name>
         <servlet-class>pdf.b3c3.ServletExtrairesPagesPdf</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletExtrairesPagesPdf</servlet-name>
         <url-pattern>/ServletExtrairesPagesPdf</url-pattern>
     </servlet-mapping>
     
-     <servlet>
+    <servlet>
         <servlet-name>ServletFusionPdf</servlet-name>
         <servlet-class>pdf.b3c3.ServletFusionPdf</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletFusionPdf</servlet-name>
         <url-pattern>/ServletFusionPdf</url-pattern>
     </servlet-mapping>
@@ -53,32 +53,42 @@
         <servlet-name>ServletImgEnPdf</servlet-name>
         <servlet-class>pdf.b3c3.ServletImgEnPdf</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletImgEnPdf</servlet-name>
         <url-pattern>/ServletImgEnPdf</url-pattern>
     </servlet-mapping>
     
-     <servlet>
+    <servlet>
         <servlet-name>ServletPdfEnImg</servlet-name>
         <servlet-class>pdf.b3c3.ServletPdfEnImg</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletPdfEnImg</servlet-name>
         <url-pattern>/ServletPdfEnImg</url-pattern>
     </servlet-mapping>
     
-         <servlet>
+    <servlet>
         <servlet-name>ServletSignerPdf</servlet-name>
         <servlet-class>pdf.b3c3.ServletSignerPdf</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletSignerPdf</servlet-name>
         <url-pattern>/ServletSignerPdf</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>ServletDownloadZip</servlet-name>
+        <servlet-class>pdf.b3c3.ServletDownloadZip</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDownloadZip</servlet-name>
+        <url-pattern>/ServletDownloadZip</url-pattern>
+    </servlet-mapping>
+    
+    
     
     <!-- DEFAULT -->
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/css/*</url-pattern>
     </servlet-mapping>

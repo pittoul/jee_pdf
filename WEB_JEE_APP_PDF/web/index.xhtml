@@ -103,14 +103,14 @@
                         </div>
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadFile" method="GET">
-                                <p><button type="submit" id="val" class="btn btn-secondary" disabled='true'>Télécharger les images</button></p>
+                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger les images</button></p>
                             </form>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <!--PARTIE FUSIONNER 2 PDF-->
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div id="partieFusion" class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
                             <h4>Fusionner deux PDF</h4>  
@@ -140,11 +140,12 @@
                             <form action="ServletFusionPdf" method="post">
                                 <input name="nomFichierOriginal1" hidden="" type="text" value="#{fileUploadView.nomFichierFusion1}"></input>
                                 <input name="nomFichierOriginal2" hidden="" type="text" value="#{fileUploadView.nomFichierFusion2}"></input>
-                                <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF</button>
+                                <button type="submit" id="val" class="btn btn-secondary">Fusionner les PDF
+                                </button>
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
-                            <form action="ServletDownloadFile" method="GET">
+                            <form action="ServletDownloadZip" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
                             </form>
                         </div>
@@ -155,7 +156,7 @@
                 <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
-                            <h4>Transformer un PDF en image</h4>
+                            <h4>Transformer une image en PDF</h4>
                         </div>
                     </div>
 
@@ -174,7 +175,7 @@
 
                     <div class="row d-flex justify-content-center">
                         <div class="col text-center pt-4 pb-3">
-                            <form action="ServletPdfEnImage" method="post">
+                            <form action="ServletImgEnPdf" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
                                 <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
                             </form>
@@ -218,7 +219,7 @@
                             <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
                         </div>
                         <div class="col text-center pt-4 pb-3">
-                            <form action="ServletDownloadFile" method="GET">
+                            <form action="ServletDownloadZip" method="GET">
                                 <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
                             </form>
                         </div>
