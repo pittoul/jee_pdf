@@ -32,7 +32,7 @@
 
                 <!--PARTIE SUPPRIMER PAGES DU PDF-->
                 <hr />
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3" id="supprimerPDF">
                     <div class="row">
                         <div class="col-12 text-center">
                             <h4>Supprimer les pages d'un PDF</h4>  
@@ -59,7 +59,11 @@
                                 <input name="extensionFichierOriginal" hidden="" type="text" value="#{fileUploadView.extensionFichier}" class="rounded" ></input>
                                 <p>Page de départ : <input class="rounded" id="pageDepartSuppr" name="pageDepart" value="#{inputNumberView.pageDepartSuppression}" placeholder="Page de départ" /></p>
                                 <p>Nombre de pages à supprimer : <input class="rounded" id="nbrePagesSuppr" name="nbrePages" value="#{inputNumberView.nbrePagesSuppression}" placeholder="Nombre de pages à supprimer"/></p>  
-                                <p><button type="submit" id="val" class="btn btn-secondary">Supprimer des pages</button></p>
+                                <p><button type="submit" id="val" class="btn btn-secondary">
+                                    <h:link fragment="supprimerPDF" style="color: white">
+                                        Supprimer des pages
+                                    </h:link>
+                                    </button></p>
                             </form>
                         </div>
                     </div>
@@ -75,7 +79,7 @@
                         </p:panel>-->
                 <!--PARTIE TRANSFORMER PDF EN IMAGES-->
                 <hr />
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3" id="transformersPDF">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
                             <h4>Transformer les pages d'un PDF en Images</h4>
@@ -98,7 +102,11 @@
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletImgEnPdf" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}" style="display:none" ></input>
-                                <button type="submit" id="val" class="btn btn-secondary mr-1">Transformer un Pdf en Images</button>
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">
+                                    <h:link fragment="transformersPDF" style="color: white">
+                                        Transformer un Pdf en Images
+                                    </h:link>
+                                </button>
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
@@ -112,7 +120,7 @@
                 <!--PARTIE FUSIONNER 2 PDF-->
                 <div id="partieFusion" class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
                     <div class="row">
-                        <div class="col-12 text-center mb-1">
+                        <div class="col-12 text-center mb-1" id="fusionnerPDF">
                             <h4>Fusionner deux PDF</h4>  
                         </div>
                     </div>
@@ -146,14 +154,18 @@
                         </div>
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadZip" method="GET">
-                                <p><button type="submit" id="val" class="btn btn-secondary">Télécharger le fichier modifié</button></p>
+                                <p><button type="submit" id="val" class="btn btn-secondary">
+                                        <h:link fragment="fusionnerPDF" style="color: white">
+                                            Télécharger le fichier modifié
+                                        </h:link>
+                                    </button></p>
                             </form>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <!--PARTIE TRANSFORMER IMG EN PDF-->
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3" id="transformerPDF">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
                             <h4>Transformer une image en PDF</h4>
@@ -177,7 +189,11 @@
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletImgEnPdf" method="post">
                                 <input name="nomFichierOriginal" hidden="" type="text" value="#{fileUploadView.nomFichier}"></input>
-                                <button type="submit" id="val" class="btn btn-secondary mr-1">PDF en image</button>
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">
+                                    <h:link fragment="transformerPDF" style="color: white">
+                                        PDF en image
+                                    </h:link>
+                                </button>
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
@@ -189,7 +205,7 @@
                 </div>
                 <!--PARTIE EXTRAIRE PAGES PDF-->
                 <hr />
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3" id="transformerPDF">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
                             <h4>Extraire des page d'un PDF</h4>
@@ -216,7 +232,11 @@
                     </form>
                     <div class="row d-flex justify-content-center">
                         <div class="col text-center pt-4 pb-3">
-                            <button type="submit" id="val" class="btn btn-secondary mr-1">Extraire des pages</button>
+                            <button type="submit" id="val" class="btn btn-secondary mr-1">
+                                <h:link fragment="transformerPDF" style="color: white">
+                                    Extraire des pages
+                                </h:link>
+                            </button>
                         </div>
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletDownloadZip" method="GET">
@@ -227,7 +247,7 @@
                 </div>
                 <hr />
                 <!--PARTIE SIGNER PDF-->
-                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3">
+                <div class="container bg-white rounded pl-3 pt-3 pb-3 pr-3" id="signerPDF">
                     <div class="row">
                         <div class="col-12 text-center mb-1">
                             <h4>Signer un PDF</h4>
@@ -253,7 +273,11 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col text-center pt-4 pb-3">
                             <form action="ServletSignerPdf" method="post">
-                                <button type="submit" id="val" class="btn btn-secondary mr-1">Signer un PDF</button>
+                                <button type="submit" id="val" class="btn btn-secondary mr-1">
+                                    <h:link fragment="signerPDF" style="color: white">
+                                        Signer un PDF
+                                    </h:link>
+                                </button>
                             </form>
                         </div>
                         <div class="col text-center pt-4 pb-3">
