@@ -5,22 +5,24 @@
  */
 package pdf.b3c3;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import static com.itextpdf.kernel.pdf.PdfName.List;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.text.DocumentException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.jasper.tagplugins.jstl.ForEach;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,15 +49,40 @@ public class ServletFusionPdf extends HttpServlet implements IChemin {
 
             System.out.println("FICHIER 1: -->" + nom1);
             System.out.println("FICHIER 1: -->" + nom2);
-            String[] files = {nom1, nom2};
-
+//            List<String> files = new ArrayList<>();
+//            files.add(destination + "\\upload_" + nom1);
+//            files.add(destination + "\\upload2_" + nom2);
+            
             FusionPDF fusion = new FusionPDF();
+            
             try {
-//            fusion.mergeFiles(files, "fusionPDF.pdf", true);
-                fusion.manipulatePdf(files, "fusionPDF.pdf");
-            } catch (Exception e) {
-                System.out.println("erreur" + e);
-            }
+	    //Prepare input pdf file list as list of input stream.
+	    List<InputStream> inputPdfList = new ArrayList<InputStream>();
+	    inputPdfList.add(new FileInputStream(destination + "\\uploadFusion1"));
+	    inputPdfList.add(new FileInputStream(destination + "\\uploadFusion2"));
+ 
+	    //Prepare output stream for merged pdf file.
+            OutputStream outputStream = 
+            		new FileOutputStream(destination + "\\" + "pdfFusion.pdf");
+ 
+            //call method to merge pdf files.
+            fusion.mergePdfFiles(inputPdfList, outputStream);     
+	   } catch (Exception e) {
+		e.printStackTrace();
+	  }
+            
+            RequestDispatcher disp = request.getRequestDispatcher("ServletDownloadFile");
+            disp.forward(request, response); // comme un include. Permet d'envoyer vers le servlet2
+            HttpSession maSession = request.getSession();
+
+            maSession.setAttribute("nomFichier", "pdfFusion.pdf");
+            maSession.setAttribute("operation", "");
+            
+            
+            
+            
+            
+            
             /**
              * Redirection:
              */

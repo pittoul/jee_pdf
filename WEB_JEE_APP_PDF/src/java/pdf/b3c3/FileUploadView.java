@@ -31,34 +31,52 @@ public class FileUploadView implements IChemin {
 
     private UploadedFile file;
     private String nomFichier;
-    private String nomFichier2;
+    private String nomFichierFusion1;
+    private String nomFichierFusion2;
     private String extensionFichier;
     private String nomCourt;
 //    private int nbrePages = 0;
     private String cheminFichier = "";
-    private String cheminFichier2 = "";
+    private String cheminFichierFusion1 = "";
+    private String cheminFichierFusion2 = "";
 //    private String afficheImg = "";
 
-    public String getCheminFichier2() {
-        return cheminFichier2;
+    public String getNomFichierFusion1() {
+        return nomFichierFusion1;
     }
 
-    public void setCheminFichier2(String cheminFichier2) {
-        this.cheminFichier2 = cheminFichier2;
+    public void setNomFichierFusion1(String nomFichierFusion1) {
+        this.nomFichierFusion1 = nomFichierFusion1;
     }
 
+    public String getNomFichierFusion2() {
+        return nomFichierFusion2;
+    }
+
+    public String getCheminFichierFusion1() {
+        return cheminFichierFusion1;
+    }
+
+    public void setCheminFichierFusion1(String cheminFichierFusion1) {
+        this.cheminFichierFusion1 = cheminFichierFusion1;
+    }
+
+    public String getCheminFichierFusion2() {
+        return cheminFichierFusion2;
+    }
+
+    public void setCheminFichierFusion2(String cheminFichierFusion2) {
+        this.cheminFichierFusion2 = cheminFichierFusion2;
+    }
+
+    public void setNomFichierFusion2(String nomFichierFusion2) {
+        this.nomFichierFusion2 = nomFichierFusion2;
+    }
 
     public String getExtensionFichier() {
         return extensionFichier;
     }
 
-    public String getNomFichier2() {
-        return nomFichier2;
-    }
-
-    public void setNomFichier2(String nomFichier2) {
-        this.nomFichier2 = nomFichier2;
-    }
 
     public String getCheminFichier() {
         return cheminFichier;
@@ -153,30 +171,16 @@ public class FileUploadView implements IChemin {
         }
     }
 
-    public void upload2() throws IOException {
+    public void uploadFusion1() throws IOException {
         if (file != null) {
-            String cheminDoc = destination + "\\" + file.getFileName();
-            this.cheminFichier2 = destination + "\\upload2_" + file.getFileName();
+            String cheminDoc = destination + "\\uploadFusion1";
+            this.cheminFichierFusion1 = destination + "\\uploadFusion1";
 
             FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            String filename = FilenameUtils.getName(file.getFileName());
-            String filenameShort = FilenameUtils.removeExtension(file.getFileName());
-            String extension = FilenameUtils.getExtension(file.getFileName());
-//            Si c'est un pdf, on obtient le nombre de pages
-//            try {
-//                PdfDocument pdfDoc = new PdfDocument(new PdfReader(cheminDoc), new PdfWriter(destination + "\\" + "testXXXX"));
-//                int n = pdfDoc.getNumberOfPages();
-//                this.nbrePages = n;
-//            } catch (Exception e) {
-//                System.out.println("erreur ! " + e);
-//            }
-            this.nomFichier2 = filename;
-//            this.nomCourt = filenameShort;
-//            this.extensionFichier = extension;
+
             InputStream input = file.getInputstream();
-//            OutputStream output = new FileOutputStream(new File(destination, (filenameShort + "_original.pdf")));
-            OutputStream output = new FileOutputStream(new File(destination, ("upload2_" + filename)));
+            OutputStream output = new FileOutputStream(new File(destination, ("uploadFusion1")));
             System.out.println("chemin : " + cheminDoc);
             // Copy the contents of the file to the output stream
             try {
@@ -188,6 +192,29 @@ public class FileUploadView implements IChemin {
         }
     }
 
+    public void uploadFusion2() throws IOException {
+        if (file != null) {
+            String cheminDoc = destination + "\\uploadFusion2";
+            this.cheminFichierFusion2 = destination + "\\uploadFusion2";
+
+            FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+            InputStream input = file.getInputstream();
+            OutputStream output = new FileOutputStream(new File(destination, ("uploadFusion2")));
+            System.out.println("chemin : " + cheminDoc);
+            // Copy the contents of the file to the output stream
+            try {
+                IOUtils.copy(input, output);
+            } finally {
+                IOUtils.closeQuietly(input);
+                IOUtils.closeQuietly(output);
+            }
+        }
+    }
+    
+    
+    
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);

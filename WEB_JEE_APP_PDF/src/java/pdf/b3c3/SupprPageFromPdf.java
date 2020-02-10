@@ -22,25 +22,16 @@ import javax.inject.Named;
 @RequestScoped
 public class SupprPageFromPdf implements IChemin {
 
-//    private String nomFichierOriginal;
     File f = new File(destination);
     private String[] pathnames;
     private String SRC = destination + "\\";
     private String DEST = destination + "\\";
 
     public void supprPages(String nomFichier, int pageDeDepart, int nbreDePages) throws IOException {
-        
-//        recuperer nom fichier:
-//    pathnames = f.list();
+
     
         SRC = SRC + "upload_" + nomFichier;
         DEST = DEST + "changedSuppr_" + nomFichier;
-    // For each pathname in the pathnames array
-//        for (String pathname : pathnames) {
-//            // Print the names of files and directories
-//            System.out.println(" - - - - - - - From SupprPageFromPdf");
-//            System.out.println(pathname);
-//        }
 
         PdfReader reader = new PdfReader(SRC);
         PdfWriter writer = new PdfWriter(DEST);
