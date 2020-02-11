@@ -50,7 +50,9 @@ public class ServletSupprPages extends HttpServlet implements IChemin {
 //                System.out.println(s);
 //            }
 //
+            System.out.println("On est dans la servletSupprPages avant instanciation du bean SupprPageFromPdf");
             SupprPageFromPdf spr = new SupprPageFromPdf();
+            System.out.println("Juste apres instanciation du bean SupprPageFromPdf");
             spr.supprPages(nom, Integer.parseInt(pageDepart), Integer.parseInt(nbrePages));
             System.out.println("SUPPRESSION DE PAGES TERMINEE !");
 //            System.out.println("\ndans le Servlet RecupNom : " + nom + ",\nNom Court : " + nomCourt + ", \nExtension : " + extension);

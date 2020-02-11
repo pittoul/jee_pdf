@@ -23,7 +23,13 @@ public class ConvertPdfToImage implements IChemin {
 
         String pdfFileName = destination + "\\upload_" + nomFichier;
         String pdfDir = destination + "\\DossierImage\\";
-        new File(pdfDir).mkdirs();
+//        Vider le dossier 'DossierImage':
+        File stockageImages = new File(pdfDir);
+        stockageImages.mkdirs();
+        
+        UtilitaireViderUnDossier utilSuppr = new UtilitaireViderUnDossier();
+        utilSuppr.emptyDirectory(stockageImages);
+
         PDDocument document = PDDocument.loadNonSeq(new File(pdfFileName), null);
         List<PDPage> pdPages = document.getDocumentCatalog().getAllPages();
         int page = 0;

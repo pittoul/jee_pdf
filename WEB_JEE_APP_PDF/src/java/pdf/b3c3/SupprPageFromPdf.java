@@ -37,9 +37,12 @@ public class SupprPageFromPdf implements IChemin {
         PdfWriter writer = new PdfWriter(DEST);
         PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(DEST));
         int n = pdfDoc.getNumberOfPages();
-        System.out.println("nbre de pages : " + n);
+        System.out.println("Nom du fichier : " + nomFichier + " nbre de pages : " + n + " - - - - pageDepart : " + pageDeDepart + " - - - - Nbre De Pages : " + nbreDePages);
         boolean validation1 = (pageDeDepart <= n);
         boolean validation2 = (nbreDePages <= (n - pageDeDepart));
+//        if(n>1){
+//            
+//        }
         try (PdfDocument document = new PdfDocument(reader, writer)) {
             if (validation1 && validation2) {
                 for (int i = 0; i < nbreDePages; i++) {

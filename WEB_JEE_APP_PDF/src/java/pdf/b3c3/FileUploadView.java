@@ -77,7 +77,6 @@ public class FileUploadView implements IChemin {
         return extensionFichier;
     }
 
-
     public String getCheminFichier() {
         return cheminFichier;
     }
@@ -97,7 +96,6 @@ public class FileUploadView implements IChemin {
 //    public void setNbrePages(int nbrePages) {
 //        this.nbrePages = nbrePages;
 //    }
-
     public String getNomCourt() {
         return nomCourt;
     }
@@ -136,12 +134,22 @@ public class FileUploadView implements IChemin {
         return destination;
     }
 
+    public void purgerDossier() {
+        String pdfFileName = destination;
+        File dossierDeFichiers = new File(pdfFileName);
+        UtilitaireViderUnDossier utilSuppr = new UtilitaireViderUnDossier();
+        utilSuppr.emptyDirectory(dossierDeFichiers);
+    }
+
     public void upload() throws IOException {
+
+        purgerDossier();
+
         if (file != null) {
             String cheminDoc = destination + "\\" + file.getFileName();
             this.cheminFichier = destination + "\\upload_" + file.getFileName();
 
-            FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
+            FacesMessage message = new FacesMessage("Votre fichier ", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
             String filename = FilenameUtils.getName(file.getFileName());
             String filenameShort = FilenameUtils.removeExtension(file.getFileName());
@@ -172,11 +180,12 @@ public class FileUploadView implements IChemin {
     }
 
     public void uploadFusion1() throws IOException {
+        purgerDossier();
         if (file != null) {
             String cheminDoc = destination + "\\uploadFusion1";
             this.cheminFichierFusion1 = destination + "\\uploadFusion1";
 
-            FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
+            FacesMessage message = new FacesMessage("Votre fichier ", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
 
             InputStream input = file.getInputstream();
@@ -193,11 +202,12 @@ public class FileUploadView implements IChemin {
     }
 
     public void uploadFusion2() throws IOException {
+        
         if (file != null) {
             String cheminDoc = destination + "\\uploadFusion2";
             this.cheminFichierFusion2 = destination + "\\uploadFusion2";
 
-            FacesMessage message = new FacesMessage("Votre fichier", file.getFileName() + " a bien été envoyé");
+            FacesMessage message = new FacesMessage("Votre fichier ", file.getFileName() + " a bien été envoyé");
             FacesContext.getCurrentInstance().addMessage(null, message);
 
             InputStream input = file.getInputstream();
@@ -209,14 +219,13 @@ public class FileUploadView implements IChemin {
             } finally {
                 IOUtils.closeQuietly(input);
                 IOUtils.closeQuietly(output);
+                System.out.println("On est à la fin du FileUploadView");
             }
         }
     }
-    
-    
-    
+
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+        FacesMessage msg = new FacesMessage("Votre fichier " + event.getFile().getFileName() + " a bien été envoyé.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

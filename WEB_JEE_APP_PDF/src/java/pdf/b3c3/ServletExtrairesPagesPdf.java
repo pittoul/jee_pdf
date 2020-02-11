@@ -53,6 +53,9 @@ public class ServletExtrairesPagesPdf extends HttpServlet implements IChemin {
 //                String s = lesParametres.nextElement();
 //                System.out.println(s);
 //            }
+
+
+
             
             /**
              * Redirection:
